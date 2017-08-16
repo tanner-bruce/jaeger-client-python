@@ -20,7 +20,6 @@
 from builtins import bytes
 from builtins import range
 from builtins import object
-import fcntl
 import socket
 import struct
 import time
@@ -87,11 +86,6 @@ def local_ip():
 def interface_ip(interface):
     """Determine the IP assigned to us by the given network interface."""
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    return socket.inet_ntoa(
-        fcntl.ioctl(
-            sock.fileno(), 0x8915, struct.pack('256s', interface[:15])
-        )[20:24]
-    )
-    # Explanation:
-    # http://stackoverflow.com/questions/11735821/python-get-localhost-ip
-    # http://stackoverflow.com/questions/24196932/how-can-i-get-the-ip-address-of-eth0-in-python
+    sock.connect(('8.8.8.8', 1))
+    return sock.getsockname()[0]
+

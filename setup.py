@@ -18,7 +18,7 @@ assert version is not None, \
 setup(
     name='jaeger-client',
     version=version,
-    url='https://github.com/uber/jaeger-client-python',
+    url='https://github.com/tanner-bruce/jaeger-client-python',
     description='Jaeger Python OpenTracing Tracer implementation',
     author='Yuri Shkuro',
     author_email='ys@uber.com',
